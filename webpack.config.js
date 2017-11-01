@@ -1,8 +1,11 @@
 const webpack = require('webpack');
+const path = require('path');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 let config = {
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
+    path: path.resolve(__dirname, './public'),
     filename: 'output.js'
   },
   module: {
@@ -14,10 +17,16 @@ let config = {
     },
      {
        test: /\.scss$/,
-       loader: ['style-loader', 'css-loader', 'sass-loader']
+       use: ExtractTextWebpackPlugin.extract({
+         use: ['css-loader', 'sass-loader'],
+         fallback: 'style-loader'
+       })
      }
    ]
-  }
+  },
+  plugins: [
+    new ExtractTextWebpackPlugin('styles.css')
+  ]
 }
 
 module.exports = config;
