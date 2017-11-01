@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack --watch"
+    "watch": "webpack-dev-server -d --config webpack.config.js --watch"
   },
   "keywords": [],
   "author": "",
