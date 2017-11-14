@@ -11,6 +11,12 @@ let config = {
     path: path.resolve(__dirname, './public'),
     filename: 'output.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.png'],
+    alias: {
+      images: path.resolve(__dirname, 'src/assets/images')
+    }
+  },
   module: {
     rules: [
       {
@@ -20,10 +26,10 @@ let config = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader'],
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader', 'postcss-loader'],
           fallback: 'style-loader'
-        })
+        })),
       },
       {
         test: /\.jsx$/,

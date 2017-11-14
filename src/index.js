@@ -1,11 +1,7 @@
-require("./assets/stylesheets/styles.scss");
-class Car {
-  manufacturer(car) {
-    document.write(`I want a ${car}`)
-  }
-}
+require('./assets/stylesheets/styles.scss');
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app/App.jsx';
 
-const range = new Car;
-
-range.manufacturer('tesla');
+ReactDOM.render(<App />, document.getElementById('app'));
